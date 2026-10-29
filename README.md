@@ -21,7 +21,7 @@ Selecciona un personaje para ver su presentación; usa «Volver a las dos» o Es
 
 La portada ofrece respuesta visual y frases al enfocar una compañera. Las fichas incluyen ejemplos ilustrativos de revisión y programación. No ejecutan el código mostrado ni contienen datos de proyectos reales.
 
-El símbolo de TEAMROOT se usa como favicon y en la cabecera. Los metadatos Open Graph y Twitter apuntan a `assets/social-preview.png`, una imagen de 1200 × 630 píxeles para compartir el sitio.
+El logo de TEAMROOT proporcionado por el estudio se usa como favicon y en la cabecera. Los metadatos Open Graph y Twitter apuntan a `assets/social-preview.png`, una imagen de 1200 × 630 píxeles para compartir el sitio.
 
 ## Recursos visuales
 

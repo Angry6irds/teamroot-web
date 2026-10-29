@@ -10,7 +10,7 @@
 assets/*
 !assets/duo-studio.png
 !assets/miku-oficinista.png
-!assets/teamroot-mark.svg
 !assets/social-preview.png
 !assets/gsap.min.js
 !assets/GSAP-NOTICE.txt
+!assets/teamroot-logo.png
