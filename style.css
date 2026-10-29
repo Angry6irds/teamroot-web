@@ -13,3 +13,4 @@
 @container site (max-width:650px){.home{--portrait-height:min(300px,62cqw);height:calc(505px + var(--portrait-height))}.hero-copy{width:94%;padding-top:34px}.hero-copy h1{font-size:clamp(18px,7.6cqw,43px)}.hero-copy p{font-size:12px;max-width:300px;margin-top:17px}.invitation{font-size:10px;margin-top:17px}.character-link{width:42%;gap:6px;align-items:flex-start}.character-link b{font-size:clamp(10px,3cqw,16px)}.character-link small{font-size:11px}.direction{font-size:18px}}
 @media(max-width:280px){.header{padding:15px 5%;height:auto;min-height:72px;flex-wrap:wrap;gap:10px}.wordmark{font-size:19px}.status{font-size:10px}}
 @media(prefers-reduced-motion:reduce){body[data-ready=true] .track{transition:none!important}}
+.home-teto img,.teto-detail .detail-art img{clip-path:inset(0 50% 0 0)}
