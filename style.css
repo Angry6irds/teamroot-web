@@ -22,3 +22,4 @@
 .status,.review-file>span{font-size:11px}
 .studio-symbol{width:50px;height:61px;object-fit:contain;border-radius:3px}@media(max-width:650px){.studio-symbol{width:34px;height:42px}}
 .studio-mark{gap:0}.studio-symbol{width:72px;height:72px;border-radius:0;object-fit:contain}@media(max-width:650px){.studio-symbol{width:48px;height:48px}}
+.studio-mark{gap:11px;color:var(--text)}@media(max-width:650px){.studio-mark{gap:7px}}
