@@ -14,3 +14,4 @@
 @media(max-width:280px){.header{padding:15px 5%;height:auto;min-height:72px;flex-wrap:wrap;gap:10px}.wordmark{font-size:19px}.status{font-size:10px}}
 @media(prefers-reduced-motion:reduce){body[data-ready=true] .track{transition:none!important}}
 .home-teto img,.teto-detail .detail-art img{clip-path:inset(0 50% 0 0)}
+.fullname{font-size:clamp(14px,1.2vw,17px);font-weight:500;line-height:1.65;letter-spacing:.015em}
