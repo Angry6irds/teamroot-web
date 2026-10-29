@@ -1,0 +1,12 @@
+*
+!.gitignore
+!.gitattributes
+!.nojekyll
+!README.md
+!index.html
+!style.css
+!app.js
+!assets/
+assets/*
+!assets/duo-studio.png
+!assets/miku-oficinista.png
