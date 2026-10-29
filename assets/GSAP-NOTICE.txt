@@ -1,0 +1,5 @@
+GSAP 3.15.0
+Source: https://www.npmjs.com/package/gsap/v/3.15.0
+Project: https://gsap.com/
+License: https://gsap.com/standard-license/
+The original copyright and license notice is preserved in gsap.min.js.
