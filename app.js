@@ -29,3 +29,6 @@ document.addEventListener('keydown', event => {
   }
 });
 showView(false);
+requestAnimationFrame(() => {
+  requestAnimationFrame(() => { document.body.dataset.ready = 'true'; });
+});
