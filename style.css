@@ -73,10 +73,8 @@
 @supports(animation-timeline:view()){ @media(prefers-reduced-motion:no-preference){.detail .work-example{animation:example-focus linear both;animation-timeline:view();animation-range:entry 0% entry 45%}@keyframes example-focus{from{opacity:.6;translate:0 20px}to{opacity:1;translate:0 0}}}}
 @media(prefers-reduced-motion:reduce){.team-member::before,.team-voices>span{transition:none}.detail .work-example{animation:none}}
 
-:root{--pose-duration:1500ms;--pose-ease:cubic-bezier(.45,0,.2,1)}
-.team-portrait .pose-primary{opacity:1;transition:opacity var(--pose-duration) var(--pose-ease),translate var(--pose-duration) var(--pose-ease)}
-.team-portrait .pose-hover{position:absolute;inset:0;width:100%;height:100%;max-width:100%;object-fit:contain;object-position:center bottom;left:0;transform:none;clip-path:none;opacity:0;translate:0 6px;pointer-events:none;transition:opacity var(--pose-duration) var(--pose-ease),translate var(--pose-duration) var(--pose-ease)}
+
+.team-portrait .pose-animation{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;opacity:0;pointer-events:none}
+.team-member.motion-ready .pose-primary{visibility:hidden}
+.team-member.motion-ready .pose-animation{opacity:1}
 .team-member:hover .team-portrait img,.team-member:focus-visible .team-portrait img{scale:1}
-.team-member.pose-ready:focus-visible .pose-primary{opacity:0;translate:0 -3px}.team-member.pose-ready:focus-visible .pose-hover{opacity:1;translate:0 0}
-@media(hover:hover){.team-member.pose-ready:hover .pose-primary{opacity:0;translate:0 -3px}.team-member.pose-ready:hover .pose-hover{opacity:1;translate:0 0}}
-@media(prefers-reduced-motion:reduce){.team-portrait .pose-primary,.team-portrait .pose-hover{transition:none;translate:0 0!important}}

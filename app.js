@@ -2,6 +2,7 @@ const names = ['teto', 'inicio', 'miku', 'neru'];
 const track = document.querySelector('#track');
 const screens = [...document.querySelectorAll('.screen')];
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const posePlayers = [];
 let entrance;
 function resetEntrance() {
   if (!window.gsap) return;
@@ -13,6 +14,7 @@ function showView(focus = true) {
   const view = names.includes(requested) ? requested : 'inicio';
   const changed = document.body.dataset.view !== view;
   resetEntrance();
+  posePlayers.forEach(player => player.setTarget(0, true));
   document.body.dataset.view = view;
   track.style.transform = `translateX(-${names.indexOf(view) * 100 / names.length}%)`;
   document.querySelector('#viewport').scrollLeft = 0;
@@ -53,8 +55,58 @@ requestAnimationFrame(() => {
   requestAnimationFrame(() => { document.body.dataset.ready = 'true'; });
 });
 
-document.querySelectorAll('.pose-hover').forEach(image => {
-  image.decode().then(() => {
-    image.closest('.team-member').classList.add('pose-ready');
-  }).catch(() => {});
+function createPosePlayer(draw, clock = window) {
+  const duration = 1500;
+  let progress = 0;
+  let target = 0;
+  let previousTime = 0;
+  let request = null;
+  function render() { draw(progress * progress * (3 - 2 * progress)); }
+  function tick(time) {
+    const step = Math.max(0, time - previousTime) / duration;
+    previousTime = time;
+    progress = target > progress ? Math.min(target, progress + step) : Math.max(target, progress - step);
+    render();
+    request = progress === target ? null : clock.requestAnimationFrame(tick);
+  }
+  function setTarget(next, immediate = false) {
+    target = next;
+    if (immediate || reducedMotion.matches) {
+      if (request !== null) clock.cancelAnimationFrame(request);
+      request = null;
+      progress = target;
+      render();
+    } else if (request === null && progress !== target) {
+      previousTime = clock.performance.now();
+      request = clock.requestAnimationFrame(tick);
+    }
+  }
+  render();
+  return { setTarget, finish() { setTarget(target, true); } };
+}
+reducedMotion.addEventListener('change', () => posePlayers.forEach(player => player.finish()));
+document.querySelectorAll('.pose-animation').forEach(async canvas => {
+  const member = canvas.closest('.team-member');
+  const image = new Image();
+  image.src = portraitMotion[canvas.dataset.character].image;
+  member.classList.add('motion-loading');
+  try {
+    await image.decode();
+    const draw = createPortraitRenderer(canvas, image, portraitMotion[canvas.dataset.character]);
+    if (!draw) return;
+    const player = createPosePlayer(draw);
+    posePlayers.push(player);
+    member.classList.add('motion-ready');
+    canvas.addEventListener('webglcontextlost', () => {
+      player.setTarget(0, true);
+      member.classList.remove('motion-ready');
+    });
+    member.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch') player.setTarget(1); });
+    member.addEventListener('pointerleave', () => { if (!member.matches(':focus-visible')) player.setTarget(0); });
+    member.addEventListener('focus', () => player.setTarget(1));
+    member.addEventListener('blur', () => { if (!member.matches(':hover')) player.setTarget(0); });
+    if (member.matches(':focus-visible, :hover')) player.setTarget(1);
+  } catch {} finally {
+    member.classList.remove('motion-loading');
+  }
 });

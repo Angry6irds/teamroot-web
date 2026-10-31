@@ -22,3 +22,5 @@ assets/*
 !assets/teto-hover.png
 !assets/miku-hover.png
 !assets/neru-hover.png
+
+!portrait-motion.js
