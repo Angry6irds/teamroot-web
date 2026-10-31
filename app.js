@@ -1,4 +1,4 @@
-const names = ['teto', 'inicio', 'miku'];
+const names = ['teto', 'inicio', 'miku', 'neru'];
 const track = document.querySelector('#track');
 const screens = [...document.querySelectorAll('.screen')];
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -14,7 +14,7 @@ function showView(focus = true) {
   const changed = document.body.dataset.view !== view;
   resetEntrance();
   document.body.dataset.view = view;
-  track.style.transform = `translateX(-${names.indexOf(view) * 100 / 3}%)`;
+  track.style.transform = `translateX(-${names.indexOf(view) * 100 / names.length}%)`;
   document.querySelector('#viewport').scrollLeft = 0;
   screens.forEach(screen => { screen.inert = screen.id !== view; });
   if (focus) {
