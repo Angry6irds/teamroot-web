@@ -52,3 +52,9 @@ showView(false);
 requestAnimationFrame(() => {
   requestAnimationFrame(() => { document.body.dataset.ready = 'true'; });
 });
+
+document.querySelectorAll('.pose-hover').forEach(image => {
+  image.decode().then(() => {
+    image.closest('.team-member').classList.add('pose-ready');
+  }).catch(() => {});
+});
